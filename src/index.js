@@ -32,4 +32,18 @@ const COUNTRY_PULAND = new Country({
 COUNTRY_UKREINE.showCountry();
 COUNTRY_PULAND.showCountry();
 
+function showProperties(country) {
+  Object.entries(country).forEach((item) => {
+    if (typeof item[1] !== "function") {
+      console.log(`${item[0]}: ${item[1]}`);
+    }
+  });
+}
 
+const COUNTRY_DATA = {
+  title: "Netherlands",
+  capital: "Amsterdam",
+  population: 18.13e9,
+  area: "41 543 km²",
+}
+showProperties(COUNTRY_DATA);
