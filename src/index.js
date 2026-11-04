@@ -1,49 +1,46 @@
 "use strict";
 
-function Country({
+// Task #1. Напишите конструктор для создания объекта Country (title - название страны, capital - столица, population - население, area - площадь).
+function Country(
   title = "Ukraine",
   capital = "Kyiv",
-  population = 18e9,
+  population = "18 000 000 p.",
   area = "603 549 km²",
-} = {}) {
+) {
   this.title = title;
   this.capital = capital;
   this.population = population;
   this.area = area;
-  this.showCountry = function () {
-  console.log(
-    `Information of country: ${Object.entries(this)
-      .filter((item) => typeof item[1] !== "function")
-      .map((item) => ` ${item[0]} - ${item[1]}`)
-      .toString()
-      .trim()}`,
-  );
-};
+  // Task #2. В этом конструкторе создайте метод showCountry(), который возвращает всю информацию о стране в одной строке.
+  this.showCountry = () =>
+    `Information of country: title = ${this.title}, capital = ${this.capital}, population = ${this.population}, area = ${this.area}.`;
 }
 
-const COUNTRY_UKREINE = new Country();
-const COUNTRY_PULAND = new Country({
-  title: "Poland",
-  capital: "Warszawa",
-  population: 37.212e9,
-  area: "312 696 km²",
-});
+// Task #3. Создайте при помощи конструктора две страны (на ваше усмотрение) со всеми необходимыми свойствами. Можно использовать параметры по умолчанию.
+const COUNTRY_UKREINE = Object.freeze(new Country()); // создфние страны с параметрами по умолчанию.
 
-COUNTRY_UKREINE.showCountry();
-COUNTRY_PULAND.showCountry();
+const COUNTRY_POLAND = Object.freeze(
+  new Country("Poland", "Warszawa", "37 212 000 p.", "312 696 km²"), // создание страны по переданным значениям.
+);
+const COUNTRY_NETHERLANDS = Object.freeze(
+  new Country("Netherlands", "Amsterdam", "18.130 000 p.", "41 543 km²"),
+);
 
+console.log(COUNTRY_UKREINE.showCountry());
+console.log(COUNTRY_POLAND.showCountry());
+console.log(COUNTRY_NETHERLANDS.showCountry());
+
+// Task #4. Напишите функцию, которая будет в цикле выводить все свойства объекта, кроме методов в консоль в формате key: value.
 function showProperties(country) {
   Object.entries(country).forEach((item) => {
-    if (typeof item[1] !== "function") {
-      console.log(`${item[0]}: ${item[1]}`);
-    }
+    if (typeof item[1] !== "function") console.log(`${item[0]}: ${item[1]}`);
   });
 }
+showProperties(COUNTRY_UKREINE);
+showProperties(COUNTRY_POLAND);
 
-const COUNTRY_DATA = {
-  title: "Netherlands",
-  capital: "Amsterdam",
-  population: 18.13e9,
-  area: "41 543 km²",
-}
-showProperties(COUNTRY_DATA);
+// Task #4﹡. Та же функция, но без цикла выводит все свойства объекта, кроме методов в консоль в формате key: value.
+const showPropertiesWithoutLoop = (obj) =>
+  console.log(JSON.stringify(obj).slice(1, -1).replaceAll('":"', ": ").replaceAll('"', "").replaceAll(",", "\n"));
+
+showPropertiesWithoutLoop(COUNTRY_NETHERLANDS);
