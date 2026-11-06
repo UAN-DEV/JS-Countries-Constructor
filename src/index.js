@@ -32,8 +32,8 @@ console.log(COUNTRY_NETHERLANDS.showCountry());
 
 // Task #4. Напишите функцию, которая будет в цикле выводить все свойства объекта, кроме методов в консоль в формате key: value.
 function showProperties(country) {
-  Object.entries(country).forEach((item) => {
-    if (typeof item[1] !== "function") console.log(`${item[0]}: ${item[1]}`);
+  Object.entries(country).forEach(([key, value]) => {
+    if (typeof value !== "function") console.log(`${key}: ${value}`);
   });
 }
 showProperties(COUNTRY_UKREINE);
