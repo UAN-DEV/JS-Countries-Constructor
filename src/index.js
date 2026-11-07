@@ -17,18 +17,15 @@ function Country(
 }
 
 // Task #3. Создайте при помощи конструктора две страны (на ваше усмотрение) со всеми необходимыми свойствами. Можно использовать параметры по умолчанию.
-const COUNTRY_UKREINE = Object.freeze(new Country()); // создфние страны с параметрами по умолчанию.
+const countryUkreine = new Country(); // создфние страны с параметрами по умолчанию.
 
-const COUNTRY_POLAND = Object.freeze(
-  new Country("Poland", "Warszawa", "37 212 000 p.", "312 696 km²"), // создание страны по переданным значениям.
-);
-const COUNTRY_NETHERLANDS = Object.freeze(
-  new Country("Netherlands", "Amsterdam", "18.130 000 p.", "41 543 km²"),
-);
+const countryPoland = new Country("Poland", "Warszawa", "37 212 000 p.", "312 696 km²") // создание страны по переданным значениям.
+const countryNetherlands = new Country("Netherlands", "Amsterdam", "18.130 000 p.", "41 543 km²")
 
-console.log(COUNTRY_UKREINE.showCountry());
-console.log(COUNTRY_POLAND.showCountry());
-console.log(COUNTRY_NETHERLANDS.showCountry());
+
+console.log(countryUkreine.showCountry());
+console.log(countryPoland.showCountry());
+console.log(countryNetherlands.showCountry());
 
 // Task #4. Напишите функцию, которая будет в цикле выводить все свойства объекта, кроме методов в консоль в формате key: value.
 function showProperties(country) {
@@ -36,11 +33,11 @@ function showProperties(country) {
     if (typeof value !== "function") console.log(`${key}: ${value}`);
   });
 }
-showProperties(COUNTRY_UKREINE);
-showProperties(COUNTRY_POLAND);
+showProperties(countryUkreine);
+showProperties(countryPoland);
 
 // Task #4﹡. Та же функция, но без цикла выводит все свойства объекта, кроме методов в консоль в формате key: value.
 const showPropertiesWithoutLoop = (obj) =>
   console.log(JSON.stringify(obj).slice(1, -1).replaceAll('":"', ": ").replaceAll('"', "").replaceAll(",", "\n"));
 
-showPropertiesWithoutLoop(COUNTRY_NETHERLANDS);
+showPropertiesWithoutLoop(countryNetherlands);
